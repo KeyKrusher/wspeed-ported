@@ -1,0 +1,25 @@
+COPYING             Copy of the GNU General Public License
+Makefile            Borland make -compatible Makefile to compile intgen.
+files.lst           This file
+findbest.c          My program that runs intgen multiple times with -sc
+                    parameter to find the most optimal compression.
+intgen.c            Intgen source code
+intgen.dsk          Desktop file for Borland C++ 3.1
+intgen.prj          Project file for Borland C++ 3.1
+intgen.gdt          Desktop file for RHIDE-1.4
+intgen.gpr          Project file for RHIDE-1.4
+intgen.txt          Intgen documentation
+make                `cat make` was the command I used to compile intgen
+                    in Linux (the files are on dos-partition on my disk,
+                    and no +x -flag)
+mode                `cat mode` calls Linux fbset utility to set a nice
+                    screen resolution of 800x600.
+bits.c              Testing bit streams...
+nesplay*.c          This program is something I want the -nc
+                    option of intgen to make in the future.
+                    ^Written before -sc was finished.
+dtales1q.c          Educational selfplayer; exactly 6000 bytes, how nice :)
+                    If you have the enlighted sound daemon (esd) for unix,
+                    try "dtales1q -dr46000|esdcat -b -m".
+makefile.src        The global Borland make -compatible Makefile to
+                    compile intgen and many other of my tools.

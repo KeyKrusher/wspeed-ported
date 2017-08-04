@@ -1,0 +1,232 @@
+
+                   The MidiS3M (sub)system tools documentation
+             Includes documentation of FMDRV, intgen and MidIns tools.
+
+              You may find this document very confusing and poorly
+             planned, but it was difficult to think where to start.
+
+                        Submitted inside midtools.zip
+
+                         Copyright 1992,1999 Bisqwit
+
+What is intgen
+
+  intgen is a S3M to internalform converter.
+  See chapter "intgen usage".
+
+What is internalform
+
+  Internalform is the internal format of the music files
+  used by the MidiS3M (sub)system.
+
+What do the S3M's have common with midis
+
+  Both mean music.
+  I have extended the S3M format so that you can create MidiS3Ms
+  easily with nothing more than Scream Tracker 3.20 or 3.21.
+  See chapter "MidiS3Ms".
+
+What is MidIns
+
+  MidIns is a program which can be used to play single midi
+  instruments (in the MidiS3M instrument name extension format,
+  see chapter "MidiS3Ms") or to play whole MidiS3Ms or to play
+  whole internalformat files.
+
+intgen usage
+
+  General command line usage of intgen is the following:
+
+    intgen [options] <sourcefile.s3m> <destfile> <variablename>
+
+    Where destfile will have .C -extension - it should not be specified.
+    Variablename is the name of the public variable which will be written
+    to the .C -file.
+
+  For more details of the usage of intgen, see intgen.txt.
+
+  If the .c -file is not wanted, syntax
+    intgen [options] <sourcefile.s3m> * *
+  can also be used. Then it just writes the nesmusa.$$$ file
+  which contains the internalformat data as binary.
+
+MidIns usage
+
+  MidIns [options] <s3mfile>
+  MidIns [options] <cfile>
+  MidIns [options] <midifile> <options which will be passed to FMDRV>
+  MidIns [options] <midi instru>
+
+    s3mfile means MidiS3M file. It must have .s3m extension.
+    cfile means internalformat file. It must have .c extension.
+    midifile means .mid or .rmi -files.
+      For midifiles, FMDRV will be used to convert them first to MidiS3M.
+    midi instru can be either
+       GM# where # is the general midi instrument number (1-127)
+    or GP# where # is the number of general midi percussion (35-80).
+
+  Options are:
+    -a            MidIns will use the Advanced Wave
+                  Effects (AWE) for the playback.
+    -o            MidIns will use the OPL2 chip (generally
+                  known as AdLib or FM) for the playback.
+    -m            MidIns will use the General MIDI (MPU-401
+                  standard) for the playback.
+    -d            MidIns will use the SB raw MIDI for the playback.
+    -v            Gives you more information.
+    -q            Gives you less information. (Excludes -v.)
+    -u            This is one hack. It disables the timer handler.
+    -r #          Specifies the timer rate. Default: 1000.
+    -l            Disables adlib volume conversion.
+                  This option is probably obsolete.
+    -w            Windows sound bug workaround. Windows has one
+                  annoying --- feature which makes dos-based
+                  music playing programs hard to use. This
+                  option will try to make it easier. It resets
+                  the sound card every time a program exits
+                  under the shell.
+
+Required files
+
+  MidIns.exe requires
+    intgen.exe for everything.
+    For playing midi files, it requires FMDRV.exe.
+
+  FMDRV.exe requires
+   fmdrv.dat (which contains the names of musical instruments)
+    and
+   fmdrv.fpa (which contains the adlib patches for the midi instruments).
+
+  intgen.exe does not require external files.
+
+MidiS3Ms
+
+  Midi S3Ms are just like any other S3M files -- except, that they
+  are usually adlib based. Just because this sound system does not
+  support digitized sound :-)
+  The instrument names inside a MidiS3M contain a general midi header
+  which tells to intgen, how should the instrument sound with Midi
+  hardware.
+  The format of instrument name is:
+    [GMn[(-|+)f][/v][*]:][blahblah]
+    [GPn[/v][*]:][blahblah]
+  Ahh, that was confusing. I tried to say everything on two lines.
+  Let's take it in longer form, with examples:
+    GM1:Grand Piano
+     This makes the instrument sound like General Midi instrument 1 does.
+    GP35:Bassdrum.
+     This makes the instrument sound like General Midi percussion 35 does.
+    GM47+12:Warp
+     This makes the instrument sound one octave higher than specified,
+     and like General Midi instrument 47 (harp) does. The name following
+     the specification does not necessarily need to be correct, because
+     it is not handled.
+    GP55/32:Written by Bisqwit
+     This makes the splash cymbal instrument sound always
+     with half volume. 64=full=default.
+    GM57-4*:K”h
+     This makes the orchestral hit sound four seminotes from below the
+     normal pitch, and using the "double channel" mode. Since the "double
+     channel" mode does not yet seem to be working correctly, you need to
+     either find the effect yourself or be not using it.
+    GM77+24/61:Bottle blow
+     Two octaves higher than the base, and max volume 61.
+  That's it!
+  See st3.doc for information of how to make adlib songs.
+  Hint: Go to the channel list and change the
+  L1,R1,L2,R2,... system to be A1,A2,A3,A4,...,A9.
+  Unzip your st3mdins.zip (included in midtools.zip) to a new
+  instrument directory and now it is easy to begin to write
+  MidiS3M songs, if you have made normal songs with st3 previously.
+
+FMDRV
+
+  See fmdrv -?.
+
+  I am lazy in writing documentation when it is 8:00 at morning.
+
+More
+
+  The MidiS3M (sub)system was originally developed for
+  Warp's Joe & Jasper game, which can be downloaded from
+  his home page, see chapter "Abbreviations and glossary".
+
+  The system was adlib.hpp, which contained inlined
+  the routines to load a adlib-s3m and to play it.
+  Then it turned into a separate module and in 1998 it was
+  being developed a lot. Currently it is very compact, requires
+  a little amount of memory and supports many sound cards.
+
+  The source codes of the sound system are being released, in
+  archive adlib.zip. Also the source codes of MidIns and intgen
+  are being released. They are contained here in this package,
+  in intg_src.arj and midinsrc.arj.
+  Notice that no documentation is given about intgen and MidIns sources.
+  Also, everything in the sources can change in one day. Nothing
+  there is stable. The internalformat also is not a stable format.
+  It is constantly being developed, all the time. Etc... You should
+  understand that the .c -files should not be used to exchange the
+  musical data. music.c made with intgen version u.vw does not
+  probably work with intgen version x.yz.
+  Notice that WSpeed gives the musical data in wspeed.c -form.
+  That's right because the version of intgen which is needed to
+  use the wspeed.c, is always contained in the distribution packet.
+
+  Also notice that MidIns and intgen can not be compiled
+  without the MidiS3M (sub)system sources.
+
+  See also intgen\intgen.txt.
+
+License
+
+  FMDRV, intgen and MidIns are freeware.
+
+  They may be distributed in their unmodified forms very freely.
+  You don't need to pay anything to the author to use them.
+  There is no trial period time limit. If you want to send money
+  or good computer parts to the author, it does not guarantee a
+  new version of a program being submitted to the net in next week,
+  but it does increase the motivation of making more good programs :-)
+
+  Modified versions may not be distributed by user without pointing
+  it out in this document that the version is not the original.
+
+  There is no warranty for the midtools programs.
+  If the use of them causes any harm to anything, it is not
+  the problem of the author. Luckily they seem not to cause
+  harm, anyway :-)
+
+  The sources codes of the intgen and MidIns are now freeware.
+  See chapter "More".
+
+Abbreviations and glossary
+
+  freeware     = See chapter "License".
+  bug          = An insect.
+                 In this document, it means a program error;
+                 something the program does when it shouldn't.
+  hacker       = Boy or girl, older or younger, who wants to know
+                 how the things work and how to change them.
+  gosub        = Go subroutine.
+                 goto = Jump to and do there whatever
+                 gosub = Jump to, do whatever and return back then.
+  Warp         = See homepage: http://iki.fi/warp/
+  Bisqwit      = See chapter "Author".
+
+Author
+
+  The MidiS3M (sub)system has been written in Finland.
+  It is a beautiful country in between of Sweden and Russia.
+  The MidiS3M (sub)system has been written by Bisqwit.
+  He is a strange young man with some computer programming knowledge.
+
+  My e-mail address is bisqwit@iki.fi.
+
+  The newest versions of everything can be downloaded from
+  the following www directory (until June 2002):
+        http://iki.fi/bisqwit/
+  I am developing it. (No links to different places yet, etc...)
+  At least http://iki.fi/bisqwit/wspeed/ is a place which you should be to.
+
+--
+Bisqwit 25.3.1999 16:00

@@ -1,0 +1,374 @@
+
+                                   WSPEED
+
+                         Full freeware version 1.13
+
+                        Copyright 1992, 2001 Bisqwit
+
+The game idea
+
+  This game wants to make you a better (faster)
+  computer typer with less accidental typing errors.
+
+  The mission is that you need to write all words you see scrolling
+  on the screen. You can miss nine (9) words, before the game is over.
+  All the time the game gives you information about your ten minute
+  relative speed (10mrs), which is a good comparision value, how good
+  are you in typing. The game tells you also a description of your
+  typing speed, during the game. 
+
+Hardware requirements
+
+  Minimum system:
+    386SX.
+    EGA-compatible display card. (Actually I am not sure if
+                                  CGA would be enough, too...)
+    Poor keyboard (not recommended).
+    Some conventional memory left (dunno what's the minimum)
+    MS-DOS 5.0
+
+  Recommended system:
+    Pentium 100 or faster. (If you want much of words on screen
+                            simultaneously, being able to be handled...)
+    VGA-compatible display card. (Text mode does not require much.)
+    Creative Sound Blaster AWE-64 with reverb 40% and chorus 30%.
+    Good keyboard (you need to be able to type fastly with it).
+    Some conventional memory left (still dunno what's the minimum)
+    MS-DOS 7.x (also known as Windows 95/98).
+ 
+Required files
+
+  wspeed.exe   (The game program file itself)
+  wspeed.c     (The game music file (not necessary if you
+                want to use your own music file. Gosub
+                "Music and sound" chapter for details.))
+  wspeed.dat   (Finnish word library. Couple of other word
+                library files is recommended. See chapter
+                "Word library files".)
+  intgen.exe   (Locatable in PATH. This has something to
+                do with the game sound system. See
+                chapter "Music and sound".)
+  scorecom.exe (Locatable in path. This is required at the
+                installation step and when joining score
+                files. See chapter "Combining score files"
+                for details.)
+  wspeed.txt   (It is good if you don't lose this document.)
+
+Generated files
+
+  wspeed.rec (The game status and score file.
+              Investigate it if you are a hacker.)
+
+Supported additional files
+
+  chmmr.*        (See chapter "Music and sound")
+  wspeed.da[a-z] (Which means wspeed.daa,wspeed.dab,wspeed.dac,
+                  wspeed.dad etc until wspeed.daz. These are word
+                  library files. See chapter "Word library files".)
+
+Usage and command line options
+
+  You can start the game by simply starting the program.
+  In DOS, you would just type wspeed and press enter.
+  However, the game supports additional options which
+  can be used to finetune the game.
+  For example, wspeed -w40 -q0  makes the game a lot easier.
+
+  Options:
+   -c       Enables the same words to appear more than once on the screen
+            at the same time. This option makes the game a lot easier.
+            Very much easier. I did not invent a good way to grade the
+            users of -c, so I renamed this option as "training mode
+            option". When you use -c, you get no score. This may possibly
+            change in future.
+   -d       Dvorak mode. Translates
+
+                 ´1234567890+`       ´1234567890+`
+                  QWERTYUIOPè^        ,é.PYFGJRL<^
+                  ASDFGHJKLôé'   to   OAEUIDHTNS-'
+                  >ZXCVBNM;:_         èQôCKXBMWVZ    .
+
+   -m file  Selects music file (see chapter "Music and sound").
+   -q num   Specify difficulty level.
+            Notice: Specifying zero (0) here may make you able to play
+            the game forever. It would not be very self developing.
+            Except zero, the smaller this number is, the more the game
+            wants you to become better than you are yet. Built-in default
+            for this option is 20. Range: 0..99.
+   -w num   Initial brakes. Recommended value 3..50, built-in default 20.
+            The smaller this number is, the faster the words move.
+            Specifying a very small positive integer here is the
+            same as using -d -option, but not. If you want head ache,
+            try -dw1. I have played with -w10 and it is yet goodly
+            playable, if you aren't very slow writer. Range: 0..999.
+   -v       Less unverbose initialization
+            Makes the game to tell you what it is doing in the very
+            beginning - before you start playing. Use it if you are
+            a hacker.
+
+The start/beginning
+
+  If you don't know yet how to start the program, gosub to the
+  "usage and command line options" chapter.
+  First the game asks you to select the word libraries which
+  you want to use in your game. If you are Finnish, a good choice
+  is "Suomi". If you are English, a good choice is "English".
+  If you are a hacker, a good choice is "C/C++" or anything
+  else. You can select any combinations of the dictionaries.
+
+  After you have selected the word library files, the game
+  asks you, which sound card do you have (in fact, it asks,
+  which built-in sound card driver do you want to use).
+  Answer the question by selecting the correct row with
+  arrow keys, and press enter.
+
+  The game begins then.
+
+  You need to type everything there scrolls on the screen.
+  Gosub the "the game idea" chapter for more information
+  about what do you need to do in the game.
+
+  If you want to know what do the acronyms and abbreviations
+  in the below part of screen mean, press F1. The game pauses
+  and it gives you help windows, which you can navigate through
+  by pressing space when you have read one. After the last help
+  window, the game continues.
+
+  When your game is over, the score table window appears on your
+  screen. You can write up your new record there by typing your
+  name if the game gives you a chance.
+  WSpeed grades you by how much correct words did you type and how fastly.
+  The game keeps separate score tables for each different game setups.
+  In the score table, the datetime is in mm.dd.yy hh:mm:ss format.
+
+Music and sound (the air waves generated by your speakers)
+
+  The game uses the MidiS3M subsystem, which I first developed
+  for Warp's Joe & Jasper game, which can be downloaded from his
+  home page, see chapter "Abbreviations and glossary".
+  MidiS3M subsystem requires a 386sx processor.
+  Due to that Intgen is required by this game, intgen.exe is
+  distributed inside the game distribution packet.
+
+  The "default" music file is contained in wspeed.c.
+  You can also play any S3M files (Scream Tracker 3 modules),
+  if they use only Adlib or have been midi-extended.
+  You can download midi-extended s3m-files from
+  the following address: http://bisqwit.stc.cx/mod/tcsmods/
+
+  There is chmmr.s3m included in the package for testing and
+  studying purposes. Chmmr theme is not composed by me, but
+  it is a good melody anyway. I am using it as the background
+  theme of Joe level editor.
+
+Word library files
+
+  You can make your new word library files.
+  You can edit the existing word library files.
+  The general format of word library file:
+     First line contains the word library name.
+     All other lines contain the words in the word library.
+     The words are in lowercase (no capital letters).
+     Empty lines can exist in dictionary files.
+  All word library files have file name in the form
+  wspeed.da#, where # is an alphabet between a-z.
+  The dictionary files included within the
+  distribution package are currently: abcdefgklnprstuwx
+    
+Hackers
+
+  The executable file has not been protected from modifications.
+  The score file has been protected from editing, but not
+  from viewing. It has been designed to be easily viewed but
+  still fastly accessed.
+
+Known bugs
+
+  Sometimes it appears that the game says the score file
+  has invalid format. I am trying to solve the reason.
+  If you meet this bug, please send your score file to
+  me for investigation.
+
+  Once it happened that after the score entry, when restarted
+  the game, it started to scroll a long long word with no sense.
+  If you meet this bug, please report it to me in as much detail
+  as possible.
+ 
+  In versions <1.03, wspeed.cpp was accidentally distributed
+  inside the packet... Well, nobody is perfect :-)
+
+  In version 1.08, the delay code was being reorganized.
+  If your screen becomes red or light red or white in the game,
+  then your computer is a bit too slow for the game. When this
+  happens with computers faster than 386sx, please report it to
+  Bisqwit. The lighter and the cleaner the color of the flashing
+  screen, the slower your computer is. This does not happen with
+  most computers, and is not a bug.
+
+  The AWE32 driver ocassionally crashes. I'm clueless.
+ 
+License
+
+  The game used to be freeware.
+  Now it is free software, distributed under the General Public License.
+
+    WSpeed comes with ABSOLUTELY NO WARRANTY.
+    See the file 'COPYING' for more details.
+    This is free software, and you are welcome
+    to redistribute it under certain conditions.
+  
+  You don't need to pay anything to the author to play this.
+  There is no trial period time limit. If you want to send money
+  or good computer parts to the author, it does not guarantee a
+  new version of the game being submitted to the net in next week,
+  but it does increase the motivation of making more games :-)
+
+  Modified versions may not be distributed by user without pointing
+  it out in this document that the version is not the original. If
+  I find out a modified version from the internet, I will add a
+  checking routine to the game.
+
+  The source codes of the game are separately being distributed
+  at http://bisqwit.stc.cx/wspeed/ in ws_src.zip . It compiles
+  with Borland C++ (at least it should).
+
+Documentation
+
+  You are reading it currently.
+  The rest of the documentation of the game is available with
+  the -? switch of WSpeed and with F1 key during game.
+
+Abbreviations and glossary
+
+  10mrs        = Ten minute relative speed.
+                 How many errorless letters (alphabets) are you able
+                 to type in ten minutes.
+  Num ‡·       = Number of alphabets.
+                 How many correct letters did you type in the game.
+  WSpeed       = Word Speed
+                 This is probably the thing I was thinking when
+                 I invented the name WSpeed.
+  word library = File containing some words. See chapter "Limits".
+  gpl, gnu     = See http://www.gnu.org/
+  bug          = An insect.
+                 In this document, it means a program error;
+                 something the program does when it shouldn't.
+  hacker       = Boy or girl, older or younger, who wants to know
+                 how the things work and how to change them.
+  gosub        = Go subroutine.
+                 goto = Jump to and do there whatever
+                 gosub = Jump to, do whatever and return back then.
+  Zorlim       = See homepage: http://zorlim.fiiu.org/
+  ztspeed      = See Zorlim.
+  Warp         = See homepage: http://iki.fi/warp/
+  Bisqwit      = See chapter "Author".
+  scorecom     = See chapter "Combining score files".
+
+Limits
+  The fixed limit of number of word library files in this game is
+  currently 21. The game refuses to start if there are more.
+  This may probably change in future.
+
+  The maximum number of score entries in a game model is fifty (50).
+  If there are fifty and somebody makes a new record, the lowest
+  score entry drops out. This may probably change in future.
+
+  The number of different game models is 2 * 2 * 100 * 1000 * 2^21,
+  which is 838860480000. Separate score record tables for each :)
+
+  For limits of command line options, see
+  chapter "Usage and command line options".
+
+Combining score files
+
+  There's a tool named ScoreCom combined in the package.
+  It can be used to combine two score files into one.
+  It is useful for example when you are upgrading your WSpeed
+  to new version, and don't want to lose your old scores.
+  When you have this game and your friend has it too, on separate
+  computers, it would be nice to see the both results on the same
+  screen. ScoreCom can be used to do it.
+  Example:
+    You copy your wspeed.rec (score file) to a diskette.
+      copy wspeed.rec a:
+    Then you take the diskette and go to visit your friend.
+    You cd to wspeed directory there and do the following:
+      scorecom a:wspeed.rec wspeed.rec
+    Then, before finishing, you could do the following, just to
+    be safe... (This program has not been widely tested yet):
+      ren wspeed.rec wspeed.bak
+    Then:
+      ren wspeed.mix wspeed.rec
+    Next, you copy the mixed score file to yourself,
+      copy wspeed.rec a:
+    and answer "yes" to possible question.
+    When you are at home, you copy the wspeed.rec from the
+    diskette back to your wspeed directory and now you both
+    have the same score lists which have your both's scores.
+
+    The score file is in text-only form.
+    With this program and an easy converter you could make
+    a WSpeed tournament in your local bbs, if you are a
+    sysop. A bit like the style of vgaplanets.
+
+  The source codes of ScoreCom are not being included with.
+
+Release history
+
+  1.0beta     2.1999   Initial release
+  1.1beta              Public release
+  1.2beta              Public release
+  1.3beta              Public release
+  1.4       2.2.1999   Public release
+                       Added DOS word library
+  1.5       3.2.1999   Public release
+                       WWW page
+  1.6       3.2.1999   Public release
+                       Added Unix word library
+  1.7       4.2.1999   Public release
+                       Added Latin word library
+                       The sound system was being optimized.
+                       The internal sound data takes now less space.
+  1.8       5.2.1999   Public release
+                       Fixed the delay code - now the contrast
+                       of the speed of game between slow and fast
+                       computers should be smaller or not exist.
+                       See chapter "Known bugs".
+                       Increased the size of Suomi word
+                       library, thanks to Matti Peltola.
+  1.9      24.2.1999   Minor internal sound system reorganizings... etc.
+  1.13     26.4.2001   Added PokÇmon word library and Dvorak support.
+
+Thanks to (see chapter "Abbreviations and glossary")
+
+  Zorlim
+  Matti Peltola
+  Warp
+  Toni Ucan
+
+Author
+
+  WSpeed has been written in Finland.
+  It is a beautiful country in between of Sweden and Russia.
+  WSpeed has been written by Bisqwit.
+  He is a strange young man with some computer programming knowledge.
+
+  The musics of WSpeed have been composed by Bisqwit.
+
+  The dictionary files of WSpeed have been written by Bisqwit.
+  Some words have been borrowed from different places.
+
+  The 'first inventor' of the game idea was probably Zorlim.
+  Somebody may see some similarities in this with his ztspeed...
+
+  If you have any questions or want to give me feed-back about
+  this game or about this manual (or my English) or about any
+  other my releases, you may send it.
+  My e-mail address is bisqwit@iki.fi.
+
+  The newest version of wspeed can be downloaded from
+  the following www directory:
+        http://iki.fi/bisqwit/wspeed/
+
+--
+Bisqwit, 26.4.2001 19:455

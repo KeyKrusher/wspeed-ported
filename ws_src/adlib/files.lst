@@ -1,0 +1,38 @@
+COPYING             Copy of the GNU General Public License
+Makefile            Borland make -compatible Makefile to
+                    compile the music system.
+files.lst           This file
+rawe32?.lib         Part of Creative ADIP; AWE library.
+ctaweapi.h          Header file for ADIP.
+ctaweapi.inc        Assembly header file for ADIP, not used currently.
+zipcomm             Description of adlib.zip file.
+*.obj               The files the Makefile will put to the music?.lib
+music?.lib          Resulting music system library.
+cardcs.inc          Contains int DoSelectCard(void) routine,
+                    which can be used to interactively prompt
+                    for the soundcard selection.
+awe_try/            This directory contains some historical
+                    files which were made when I tried to make
+                    the AWE support myself...
+backup/             My backup directory.
+m_mpu.h             Header file for the MPU-401 support implementation.
+m_mpu.c             The MPU-401 support implementation.
+m_opl.h             Header file for the OPL/FM support implementation.
+m_opl.c             The OPL/FM support implementation.
+m_awe.h             Header file for the AWE-32/64 support implementation.
+m_awe.c             The AWE-32/64 support implementation.
+m_path.c            Contains Pathi(), which is a
+                    very useful function.
+raweobjs.rar        Contains the files which rawe*.lib
+                    have probably been built of.
+m_arch.c            Contains PlayArchive(), the archive support function.
+m_sr.c              Contains save/restore position routines.
+music.h             Header file for the music system.
+                    You need to #include this to your source
+                    file if you want to use this music system...
+music.c             The skeleton, heart and soul of this music system.
+copylib.bat         I made this batch file to make it easier to switch
+                    between sbk/sf2 versions of ADIP. You probably don't
+                    have any use for this file.
+makefile.src        The global Borland make -compatible Makefile to
+                    compile intgen and many other of my tools.

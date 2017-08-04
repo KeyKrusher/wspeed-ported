@@ -1,0 +1,11 @@
+Makefile            Borland make -compatible Makefile to compile intgen.
+midins.c            Midins source code
+midins.dsk          Desktop file for Borland C++ 3.1
+midins.prj          Project file for Borland C++ 3.1
+midins.gdt          Desktop file for RHIDE-1.4
+midins.gpr          Project file for RHIDE-1.4
+midtools.txt        The yet unnamed MidiS3M (sub)system tools documentation
+which.c             Finds files using PATH.
+zipcomm             Description of midtools.zip file.
+makefile.src        The global Borland make -compatible Makefile to
+                    compile midins and many other of my tools.

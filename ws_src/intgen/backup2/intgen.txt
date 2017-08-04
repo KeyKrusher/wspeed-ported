@@ -1,0 +1,136 @@
+/*****************************************************************************
+ *
+ * Intgen - Originally the S3M to MidiS3M subsystem internalformat converter
+ *          Contains also routines for handling the NES-S3M files
+ *
+ *          Copyright (C) 1999 Bisqwit (http://www.icon.fi/~bisqwit/)
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software
+ *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ *  *
+ *
+ *  The selfplayers generated with intgen are in responsibility
+ *  of the users who run intgen to make the selfplayers :-)
+ *
+ *****************************************************************************/
+
+Bisqwit 27.3.1999 00:10 --
+        22.4.1999 06:53 -->
+
+Options of intgen:
+    -v, --verbose           Does verbose++.
+    -b, --batch             Disables some informational texts,
+                            suitable for batch working mode.
+    -h, --no-vibrato        If intgen is going to write an internalformat
+                            file, it does not write there any Hxx commands
+                            if this option was specified.
+    -q, --no-retrig         If intgen is going to write an internalformat
+                            file, it does not write there any Qxx commands
+                            if this option was specified.
+    -r, --verify            Verifies the source .S3M -file.
+                            If this option was specified, the internalformat
+                            file will not be created, -sa will be ignored
+                            and -v will be assumed.
+    -n, --noname            If intgen is going to write an internalformat
+                            file, it does not write there the song name.
+                            Use this only if the memory usage is a point.
+                            Normally the song name is being written
+                            as a AsciiZ string to the first bytes of
+                            the resulting data.
+    -o, --nopt              Disables the instrument number optimization.
+                            This has nothing to do with the --nes* options,
+                            so effectful only if creating an internalformat
+                            file.
+    -sa, --nesa             Converts a NES-S3M file into selfplaying .ASM
+                            file, which uses the AdLib to play. Seek for
+                            the NESMusa program for more information about
+                            NES-S3M files. You can find sample NES-S3M files
+                            at http://www.icon.fi/~bisqwit/nesexe/ directory.
+    -sc, --nesc             Converts a NES-S3M file into selfplaying .C
+                            file, which uses the Sun /dev/audio device
+                            to play. Also /dev/dsp supported, and the
+                            sampling rate may be changed.
+    -sC, --nesC             Not only converts a NES-S3M file into a 
+                            selfplaying .C file, which uses the Sun
+                            /dev/audio device to play, but make a full
+                            featured NES-S3M player. All references to
+                            -sc in this document apply to -sC also.
+    -ni, --nesil            Disables interlaced data format. This option
+                            will have no effect unless -sa was specified.
+                            For -sc, this option is automatic.
+    -nc, --nesco            Sets the compressed data identification byte
+                            value, between 0..255. Value 256 disables the
+                            compression. This option has no effect unless
+                            either -sa or -sc was specified. With -sc,
+                            values between 128..255 are forbidden.
+                            Default value: 127
+    -nx, --nesxor           Sets the compressed data xorring value, between
+                            0..255. Value 0 disables the xorring. This
+                            option has effect only if -sa was specified
+                            and the compression datavalue is not 256.
+                            Default value: 255
+    -no, --nescount         Selects the amount of character values that the
+                            compressor uses for resulting data, in range
+                            of 1..255. This is only effectful with -sc.
+                            Default value: 64
+    -nr, --nesroll          Selects the amount the compressor adds to the
+                            character values, in range 0..255. This is only
+                            effectful with -sc.
+                            Default value: 154.
+    -nd, --nesdepf          Selects the amount of bits that the compressor
+                            uses for the distance, in range of 2..14.
+                            This is only effectful for -sa and -sc.
+                            This sets also neslength to 16-nesdepf.
+                            Default value: 10.
+    -nl, --neslength        Selects the amount of bits that the compressor
+                            uses for the length, in range of 2..10.
+                            This is only effectful with -sc. Don't use
+                            this with -sa; I am not sure but I believe
+                            it would break it down.
+                            Default value: 6.
+    -p, --nopat             Writes no patterns. Effectful (?) only if
+                            creating an internalformat file.
+    -?, --help              Shows brief list of the options.
+    -V, --version           Shows version information.
+
+If intgen finds the intgen.msg file in the directory it was
+started from, it will dump its contents on the screen.
+
+Since version 2.87, intgen can now be compiled
+to work in unix environment also.
+
+
+Bisqwit 5.2.1999 6:00 -->
+
+Pattern data compression (ordnum&256 == 256):
+
+        Packed data consits of following entries:
+        BYTE:what  <16=end of row
+                      1..14=1..14 empty lines
+                      15   =follows; BYTE=number of empty lines
+                   &15=channel
+                   &16=follows;  BYTE:infobyte
+                   &32=follows;  BYTE:note
+                                      note&128=follows; BYTE:instrument
+                   &64=follows;  BYTE:volume
+                   &128=follows; BYTE:command
+
+If instrument number does not come with note, the
+last instrument value for specified channel is used.
+If infobyte does not come with command, assumed 00.
+
+Pattern data compression (ordnum&256 == 0):
+Same as above, but instrument byte comes always
+after note, regardless of 7th bit of note.

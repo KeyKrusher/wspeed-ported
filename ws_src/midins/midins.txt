@@ -1,0 +1,7 @@
+See midtools.txt.
+
+This file exists here only because some of my other products
+erroneously refer to this document... I am too lazy to fix them.
+
+--
+Bisqwit

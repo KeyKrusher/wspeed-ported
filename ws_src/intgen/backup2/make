@@ -1,0 +1,1 @@
+gcc -g -O3 -I /root/src/midi -I /okd/bc31/adlib -funsigned-char -Wall intgen.c ../fmdrv/cons.c -o /intgen

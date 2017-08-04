@@ -1,0 +1,15 @@
+
+*** Modified files in JOE when it aborted on Sat Jun  5 09:29:44 1999
+*** JOE was aborted by signal 1
+
+*** Modified files in JOE when it aborted on Sun Sep 26 17:29:45 1999
+*** JOE was aborted by signal 15
+
+*** File '(Unnamed)'
+.P
+sbenv
+
+*** File '(Unnamed)'
+m_mpu.c
+music.c
+music.h

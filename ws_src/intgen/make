@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+CMD='gcc -g -O3 -I /okd/bc31/adlib -funsigned-char -W -Wall intgen.c ../fmdrv/cons.c -o intgen'
+echo "$CMD"
+$CMD

@@ -1,0 +1,8 @@
+----adlib.zip-------------------------------------------------------------
+The yet unnamed MidiS3M (sub)system source code release.
+Programmed by Bisqwit. Many thanks to Warp.
+No offline documentation available. Try including adlib.h
+and adlibc.lib to your compact model project. No warranty.
+See also midtools.zip.
+If questions, mail to joelhy@evitech.fi.
+--------------------------------------------------------------------------
